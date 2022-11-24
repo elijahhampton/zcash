@@ -740,7 +740,7 @@ bool CNode::ReceiveMsgBytes(const char *pch, unsigned int nBytes)
             std::string strCommand = SanitizeString(msg.hdr.GetCommand());
             MetricsIncrementCounter("zcash.net.in.messages", "command", strCommand.c_str());
             MetricsCounter(
-                "zcash.net.in.bytes", msg.hdr.nMessageSize,
+                 metrics::zcash::net::ZCASH_NET_OUT_BYTES, msg.hdr.nMessageSize,
                 "command", strCommand.c_str());
             messageHandlerCondition.notify_one();
         }
@@ -1150,7 +1150,7 @@ void ThreadSocketHandler()
         }
         if (vNodesSize != nPrevNodeCount) {
             nPrevNodeCount = vNodesSize;
-            MetricsGauge("zcash.net.peers", nPrevNodeCount);
+            MetricsGauge(metrics::zcash::net::ZCASH_NET_PEERS, nPrevNodeCount);
             uiInterface.NotifyNumConnectionsChanged(nPrevNodeCount);
         }
 
@@ -2044,14 +2044,14 @@ void CNode::RecordBytesRecv(uint64_t bytes)
 {
     LOCK(cs_totalBytesRecv);
     nTotalBytesRecv += bytes;
-    MetricsCounter("zcash.net.in.bytes.total", bytes);
+    MetricsCounter(metrics::zcash::net::ZCASH_NET_IN_BYTES_TOTAL, bytes);
 }
 
 void CNode::RecordBytesSent(uint64_t bytes)
 {
     LOCK(cs_totalBytesSent);
     nTotalBytesSent += bytes;
-    MetricsCounter("zcash.net.out.bytes.total", bytes);
+    MetricsCounter(metrics::zcash::net::ZCASH_NET_OUT_BYTES_TOTAL, bytes);
 
     uint64_t now = GetTime();
     if (nMaxOutboundCycleStartTime + nMaxOutboundTimeframe < now)
@@ -2367,7 +2367,7 @@ void CNode::EndMessage() UNLOCK_FUNCTION(cs_vSend)
     ssSend.GetAndClear(*it);
     nSendSize += (*it).size();
     MetricsCounter(
-        "zcash.net.out.bytes", (*it).size(),
+        metrics::zcash::net::ZCASH_NET_OUT_BYTES, (*it).size(),
         "command", strSendCommand.c_str());
     strSendCommand.clear();
 

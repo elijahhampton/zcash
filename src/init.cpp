@@ -1485,7 +1485,7 @@ bool AppInit2(boost::thread_group& threadGroup, CScheduler& scheduler)
     // Expose binary metadata to metrics, using a single time series with value 1.
     // https://www.robustperception.io/exposing-the-software-version-to-prometheus
     MetricsIncrementCounter(
-        "zcashd.build.info",
+        metrics::zcashd::build::ZCASHD_BUILD_INFO,
         "version", CLIENT_BUILD.c_str());
 
     if ((chainparams.NetworkIDString() != "regtest") &&

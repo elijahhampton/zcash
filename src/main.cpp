@@ -2044,9 +2044,9 @@ bool AcceptToMemoryPool(
 
             pool.EnsureSizeLimit();
 
-            MetricsGauge("zcash.mempool.size.transactions", pool.size());
-            MetricsGauge("zcash.mempool.size.bytes", pool.GetTotalTxSize());
-            MetricsGauge("zcash.mempool.usage.bytes", pool.DynamicMemoryUsage());
+            MetricsGauge(metrics::zcash::mempool::ZCASH_MEMPOOL_SIZE_TRANSACTIONS, pool.size());
+            MetricsGauge(metrics::zcash::mempool::ZCASH_MEMPOOL_SIZE_BYTES, pool.GetTotalTxSize());
+            MetricsGauge(metrics::zcash::mempool::ZCASH_MEMPOOL_USAGE_BYTES, pool.DynamicMemoryUsage());
         }
     }
 
@@ -3897,7 +3897,7 @@ void static UpdateTip(CBlockIndex *pindexNew, const CChainParams& chainParams) {
     auto orchardPool = PoolMetrics::Orchard(pindexNew, pcoinsTip);
     auto transparentPool = PoolMetrics::Transparent(pindexNew, pcoinsTip);
 
-    MetricsGauge("zcash.chain.verified.block.height", pindexNew->nHeight);
+    MetricsGauge(metrics::zcash::chain::ZCASH_CHAIN_VERIFIED_BLOCK_HEIGHT, pindexNew->nHeight);
     RenderPoolMetrics("sprout", sproutPool);
     RenderPoolMetrics("sapling", saplingPool);
     RenderPoolMetrics("orchard", orchardPool);

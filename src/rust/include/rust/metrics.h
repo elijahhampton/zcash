@@ -14,6 +14,44 @@
 extern "C" {
 #endif
 
+namespace metrics {
+    namespace zcashd {
+        namespace debug {
+            static const char* const ZCASHD_DEBUG_MEMORY_ALLOCATED_EQUIHASH_SOLUTIONS="zcashd.debug.memory.allocated_equihash_solutions";
+            static const char* const ZCASHD_DEBUG_MEMORY_TRIMMED_EQUIHASH_SOLUTIONS="zcashd.debug.memory.trimmed_equihash_solutions";
+            static const char* const ZCASHD_DEBUG_MEMORY_TRIMMED_EQUIHASH_READ_DBINDEX="zcashd.debug.blocktree.trimmed_equihash_read_dbindex";
+            static const char* const ZCASHD_DEBUG_BLOCKTREE_WRITE_BATCH="zcashd.debug.blocktree.write_batch";
+            static const char* const ZCASHD_DEBUG_BLOCKTREE_WRITE_BATCH_READ_DBINDEX="zcashd.debug.blocktree.write_batch_read_dbindex";
+        }
+        namespace build {
+            static const char* const ZCASHD_BUILD_INFO="zcashd.build.info";
+        }
+    }
+
+    namespace zcash {
+        namespace net {
+            static const char* const ZCASH_NET_IN_MESSAGES="zcash.net.in.messages";
+            static const char* const ZCASH_NET_OUT_MESSAGES="zcash.net.out.messages";
+            static const char* const ZCASH_NET_IN_BYTES="zcash.net.in.bytes";
+            static const char* const ZCASH_NET_OUT_BYTES="zcash.net.out.bytes":
+            static const char* const ZCASH_NET_PEERS="zcash.net.peers";
+            static const char* const ZCASH_NET_IN_BYTES_TOTAL="zcash.net.in.bytes.total";
+            static const char* const ZCASH_NET_OUT_BYTES_TOTAL="zcash.net.out.bytes.total";
+        }
+        namespace chain {
+            static const char* const ZCASH_CHAIN_VERIFIED_BLOCK_HEIGHT="zcash.chain.verified.block.height";
+            static const char* const ZCASH_CHAIN_VERIFIED_BLOCK_TOTAL="zcash.chain.verified.block.total";
+            static const char* const ZCASH_CHAIN_VERIFIED_BLOCK_SECONDS="zcash.chain.verified.block.seconds";
+        }
+
+        namespace mempool {
+            static const char* const ZCASH_MEMPOOL_SIZE_TRANSACTIONS="zcash.mempool.size.transactions";
+            static const char* const ZCASH_MEMPOOL_SIZE_BYTES="zcash.mempool.size.bytes";
+            static const char* const ZCASH_MEMPOOL_USAGE_BYTES="zcash.mempool.usage.bytes";
+        }
+    }
+}
+
 /// Initializes the metrics runtime and runs the Prometheus exporter in a new
 /// thread.
 ///
