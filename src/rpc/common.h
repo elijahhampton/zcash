@@ -1,3 +1,4 @@
+//elijah
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin Core developers
 // Copyright (c) 2019-2023 The Zcash developers
@@ -178,6 +179,7 @@ static const CRPCConvertTable rpcCvtTable =
     { "z_setmigration",              {{o}, {}} },
     { "z_getmigrationstatus",        {{}, {o}} },
     { "z_shieldcoinbase",            {{s, s}, {o, o, n, s}} },
+    { "z_shieldtransparent",         {{s}, {n}} },
     { "z_mergetoaddress",            {{o, s}, {o, o, o, n, s}} },
     { "z_listoperationids",          {{}, {s}} },
     { "z_getnotescount",             {{}, {o, o}} },
